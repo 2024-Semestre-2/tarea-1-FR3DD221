@@ -20,6 +20,16 @@ public class Memory {
         memoryInstrucs = new Instruction[memorySpace];
     }
     
+    public void printMemory() {
+        for (Instruction element : memoryInstrucs) {
+            if (element != null) {
+                System.out.println(element.getCompIns());
+                continue;
+            }
+            System.out.println("Empty space");
+        }
+    }
+    
     public int getActualIndexOS() {
         return actualIndexOS;
     }

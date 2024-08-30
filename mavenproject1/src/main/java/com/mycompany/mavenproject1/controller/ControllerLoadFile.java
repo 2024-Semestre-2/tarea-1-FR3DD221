@@ -4,6 +4,7 @@
  */
 package com.mycompany.mavenproject1.controller;
 
+import com.mycompany.Bslogic.Instruction;
 import com.mycompany.mavenproject1.model.Model;
 import com.mycompany.mavenproject1.view.App;
 import java.awt.event.ActionEvent;
@@ -19,15 +20,16 @@ import javax.swing.JFileChooser;
  *
  * @author fredd
  */
-public class Controller implements ActionListener {
+public class ControllerLoadFile implements ActionListener {
 
     private App view;
     private Model model;
 
-    public Controller(App view, Model model) {
+    public ControllerLoadFile(App view, Model model) {
         this.view = view;
         this.model = model;
         view.loadFile.addActionListener(this);
+        view.startExecution.setEnabled(false);
     }
 
     public void start() {
@@ -40,7 +42,8 @@ public class Controller implements ActionListener {
 
         if (source == view.loadFile) {
             handleLoadFile();
-        } else {
+        }
+        else {
             System.out.println("Event unknown.");
         }
     }
@@ -48,7 +51,8 @@ public class Controller implements ActionListener {
     public void handleLoadFile() {
         JFileChooser fileChooser = new JFileChooser();
         ArrayList<String> lines = new ArrayList<>();
-        
+        view.moveExecution.setEnabled(false);
+        cleanRegisters();
         
         int returnValue = fileChooser.showOpenDialog(null);
 
@@ -73,5 +77,35 @@ public class Controller implements ActionListener {
         
         model.setLines(lines);
         model.setUserInsToMemo();
+        writeBlockMemory();
+        view.startExecution.setEnabled(true);
+    }
+    
+    public void cleanRegisters() {
+        view.textBox1.setText("Empty");
+        view.textBox2.setText("Empty");
+        view.textBox3.setText("Empty");
+        view.textBox4.setText("Empty");
+        view.textBox5.setText("Empty");
+    }
+    
+    public void writeBlockMemory() {
+        Instruction[] memoTemp = model.getMemory().getMemoryInstrucs();
+        String text = "";
+        int indexUs = model.getMemory().getIndexUser();
+    
+        for (int i = 0; i < model.getMemorySize(); i++) {
+            if (memoTemp[i] != null) {
+                text = text + String.valueOf(i) + " User instruction " + (memoTemp[i].getCompIns()) + "\n\n";
+                continue;
+            }
+            if (i <= indexUs) {
+                text = text + (String.valueOf(i) + " BCP empty space\n\n");
+                continue;
+            }
+            text = text + (String.valueOf(i) + " User empty space\n\n");
+        }
+        
+        view.memoryBlock.setText(text);
     }
 }

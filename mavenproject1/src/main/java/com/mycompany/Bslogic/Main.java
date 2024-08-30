@@ -1,6 +1,8 @@
 package com.mycompany.Bslogic;
 
-import com.mycompany.mavenproject1.controller.Controller;
+import com.mycompany.mavenproject1.controller.ControllerBlockMemory;
+import com.mycompany.mavenproject1.controller.ControllerLoadFile;
+import com.mycompany.mavenproject1.controller.ControllerRegisters;
 import com.mycompany.mavenproject1.model.Model;
 import com.mycompany.mavenproject1.view.App;
 
@@ -15,7 +17,9 @@ public class Main {
         App view = new App();
         Model model = new Model();
         
-        Controller controller = new Controller(view, model);
+        ControllerLoadFile controller = new ControllerLoadFile(view, model);
+        ControllerRegisters controllerRegisters = new ControllerRegisters(view, model);
+        ControllerBlockMemory controllerMemo = new ControllerBlockMemory(view, model);
         controller.start();
         view.setVisible(true);
     }

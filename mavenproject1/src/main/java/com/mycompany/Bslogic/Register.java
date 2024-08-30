@@ -9,7 +9,7 @@ public class Register {
     private String name;
     private String value;
     
-    Register (String name, String value) {
+    public Register (String name, String value) {
         this.name = name;
         this.value = value;
     }
