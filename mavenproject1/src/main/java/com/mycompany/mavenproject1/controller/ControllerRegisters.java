@@ -38,11 +38,15 @@ public class ControllerRegisters implements ActionListener {
     public void handleMoveExec() {
         model.executionProgram();
         checkRegisters();
+        view.pcRegister.setText(String.valueOf(model.getActualInstruc()));
+        view.irRegister.setText(String.valueOf(model.getActualInstrucString()));
     }
     
     public void handleStartExecution() {
         model.executionProgram();
         checkRegisters();
+        view.pcRegister.setText(String.valueOf(model.getActualInstruc()));
+        view.irRegister.setText(String.valueOf(model.getActualInstrucString()));
         view.startExecution.setEnabled(false);
         view.moveExecution.setEnabled(true);
     }
@@ -90,5 +94,7 @@ public class ControllerRegisters implements ActionListener {
         view.textBox3.setText("Empty");
         view.textBox4.setText("Empty");
         view.textBox5.setText("Empty");
+        view.pcRegister.setText("Empty");
+        view.irRegister.setText("Empty");
     }
 }

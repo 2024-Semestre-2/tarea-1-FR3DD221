@@ -14,6 +14,7 @@ public class Model{
     ArrayList<String> lines = new ArrayList<>();
     int memorySize = 100;
     int userMemStart = 20;
+    String actualInstrucString = "";
     Memory memory = new Memory(memorySize, 0, userMemStart);
     int actualInstruc = memory.getIndexUser();
     Register AX = new Register("AX", "");
@@ -88,43 +89,12 @@ public class Model{
         if (actualInstruc < memory.getActualIndexUser()) {
             Instruction tempIns = memory.getMemoryInstrucs()[actualInstruc];
             tempIns.printInst();
+            actualInstrucString = tempIns.getCompIns();
 
             if (tempIns.getEachPartIns().length < 3) {
                 setToMemorySimp(tempIns);
-                System.out.println("Estados de los registros\n");
-                System.out.println("AX: ");
-                System.out.println(AX.getValue());
-                System.out.println("\n");
-                System.out.println("BX: ");
-                System.out.println(BX.getValue());
-                System.out.println("\n");
-                System.out.println("CX: ");
-                System.out.println(CX.getValue());
-                System.out.println("\n");
-                System.out.println("DX: ");
-                System.out.println(DX.getValue());
-                System.out.println("\n");
-                System.out.println("AC: ");
-                System.out.println(AC.getValue());
-                System.out.println("\n");
             } else {
                 setToMemoryComp(tempIns);
-                System.out.println("Estados de los registros\n");
-                System.out.println("AX: ");
-                System.out.println(AX.getValue());
-                System.out.println("\n");
-                System.out.println("BX: ");
-                System.out.println(BX.getValue());
-                System.out.println("\n");
-                System.out.println("CX: ");
-                System.out.println(CX.getValue());
-                System.out.println("\n");
-                System.out.println("DX: ");
-                System.out.println(DX.getValue());
-                System.out.println("\n");
-                System.out.println("AC: ");
-                System.out.println(AC.getValue());
-                System.out.println("\n");
             }
             actualInstruc++;
         }
@@ -259,6 +229,23 @@ public class Model{
 
     public int getMemorySize() {
         return memorySize;
+    }
+
+    public void setMemorySize(int memorySize) {
+        this.memorySize = memorySize;
+    }
+
+    public void setUserMemStart(int userMemStart) {
+        this.userMemStart = userMemStart;
+        memory = new Memory(memorySize, 0, userMemStart);
+    }
+
+    public int getActualInstruc() {
+        return actualInstruc;
+    }
+
+    public String getActualInstrucString() {
+        return actualInstrucString;
     }
     
     

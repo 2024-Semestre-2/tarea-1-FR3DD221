@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.mycompany.mavenproject1.controller;
 
 import com.mycompany.Bslogic.Instruction;
@@ -53,6 +50,7 @@ public class ControllerLoadFile implements ActionListener {
         ArrayList<String> lines = new ArrayList<>();
         view.moveExecution.setEnabled(false);
         cleanRegisters();
+        String text = "";
         
         int returnValue = fileChooser.showOpenDialog(null);
 
@@ -67,6 +65,7 @@ public class ControllerLoadFile implements ActionListener {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     lines.add(line);
+                    text = text + "\n" + line;
                 }
             } catch (IOException e) {
                 e.printStackTrace(); 
@@ -79,6 +78,7 @@ public class ControllerLoadFile implements ActionListener {
         model.setUserInsToMemo();
         writeBlockMemory();
         view.startExecution.setEnabled(true);
+        view.codeArea.setText(text);
     }
     
     public void cleanRegisters() {
@@ -87,6 +87,8 @@ public class ControllerLoadFile implements ActionListener {
         view.textBox3.setText("Empty");
         view.textBox4.setText("Empty");
         view.textBox5.setText("Empty");
+        view.pcRegister.setText("Empty");
+        view.irRegister.setText("Empty");
     }
     
     public void writeBlockMemory() {
