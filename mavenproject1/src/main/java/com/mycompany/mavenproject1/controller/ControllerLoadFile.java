@@ -93,10 +93,10 @@ public class ControllerLoadFile implements ActionListener {
     
     public void writeBlockMemory() {
         Instruction[] memoTemp = model.getMemory().getMemoryInstrucs();
-        String text = "";
+        String text = "BCP SPACE USED BY BCP 0\n\n";
         int indexUs = model.getMemory().getIndexUser();
     
-        for (int i = 0; i < model.getMemorySize(); i++) {
+        for (int i = 1; i < model.getMemorySize(); i++) {
             if (memoTemp[i] != null) {
                 text = text + String.valueOf(i) + " User instruction " + (memoTemp[i].getCompIns()) + "\n\n";
                 continue;
