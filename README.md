@@ -5,5 +5,5 @@
 
 ### Estado del proyecto: Escala de 1 a 5, 1 siendo completo y 5 muy malo
 ### Estado: 1
-### Enlace del video: 
+### Enlace del video: https://www.youtube.com/watch?v=APTtw3hB0pA
 Recordar que el video debe ser público y con sonido para ser visto por el profesor
